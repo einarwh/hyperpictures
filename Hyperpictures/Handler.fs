@@ -378,35 +378,3 @@ let handleRequest stackStrings : string =
         ]
     let result = RenderView.AsString.htmlDocument doc
     result
-
-// let getHandler : HttpHandler =
-//     fun (next : HttpFunc) (ctx : HttpContext) ->
-//         let pathString = ctx.Request.Path.Value.Substring(1) 
-//         let pathElements = pathString.Split("/") |> Array.toList |> List.filter (fun s -> s.Length > 0)
-//         try 
-//             (handleRequest pathElements) next ctx
-//         with 
-//         | StackUnderflowException -> 
-//             ctx.SetStatusCode 400
-//             (htmlString "Stack underflow exception!") next ctx
-//         | TypeException msg -> 
-//             ctx.SetStatusCode 400
-//             (htmlString msg) next ctx 
-//         | ex ->
-//             ctx.SetStatusCode 500 
-//             (htmlString ex.Message) next ctx
-
-// let postHandler : HttpHandler =
-//     fun (next : HttpFunc) (ctx : HttpContext) ->
-//         let pathString = ctx.Request.Path.Value 
-//         match ctx.Request.HasFormContentType with
-//         | false -> text "Bad request - where is the form?" next ctx
-//         | true ->
-//             match ctx.Request.Form.TryGetValue("number") with 
-//             | (true, formStringValues) ->
-//                 let numberStr = formStringValues.[0]
-//                 let pathString = ctx.Request.Path.Value 
-//                 let location = sprintf "%s/%s" pathString numberStr
-//                 (redirectTo false location) next ctx
-//             | _ ->
-//                 text "Bad request - where is the number?" next ctx
