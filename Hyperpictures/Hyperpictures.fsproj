@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Vector.fs" />
+    <Compile Include="Shape.fs" />
+    <Compile Include="Styling.fs" />
+    <Compile Include="Letters.fs" />
+    <Compile Include="Figures.fs" />
+    <Compile Include="Fish.fs" />
+    <Compile Include="Lizard.fs" />
+    <Compile Include="Herring.fs" />
+    <Compile Include="Box.fs" />
+    <Compile Include="Lens.fs" />
+    <Compile Include="Picture.fs" />
+    <Compile Include="Engine.fs" />
+    <Compile Include="Transformation.fs" />
+    <Compile Include="Stack.fs" />
+    <Compile Include="Handler.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
