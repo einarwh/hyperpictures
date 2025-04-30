@@ -6,7 +6,7 @@ open Styling
 open Box
 open Lens
 open Picture
-open Engine
+open View
 
 type Bounds = (int * int)
 

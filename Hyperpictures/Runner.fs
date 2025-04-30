@@ -1,6 +1,6 @@
-module Handler
+module Runner
 
-open Engine
+open View
 open Box
 open Lens
 open Transformation
@@ -276,7 +276,7 @@ let toSvg (picture : Picture) : XmlNode =
     let lens = (box, Blackish)
     view ((600, 600), Grey, picture lens)
 
-let handleRequest stackStrings : string = 
+let run stackStrings : string = 
     let values = stackStrings |> List.map parseStackValue
     let stackString = toStackString stackStrings
     let popStackString = stackStrings |> tailless |> toStackString
@@ -376,5 +376,4 @@ let handleRequest stackStrings : string =
                 ]
             ]
         ]
-    let result = RenderView.AsString.htmlDocument doc
-    result
+    RenderView.AsString.htmlDocument doc

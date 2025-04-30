@@ -3,7 +3,7 @@ open System.Threading.Tasks
 open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.Hosting
 open Microsoft.AspNetCore.Http
-open Handler
+open Runner
 open Stack
 
 let getHandler (ctx : HttpContext) : Task = 
@@ -11,7 +11,7 @@ let getHandler (ctx : HttpContext) : Task =
     let nonNullPath = if routePath = null then "" else routePath
     let pathElements = nonNullPath.Split("/") |> Array.toList |> List.filter (fun s -> s.Length > 0)
     try 
-        let result = handleRequest pathElements
+        let result = run pathElements
         ctx.Response.WriteAsync(result)
     with 
     | StackUnderflowException -> 
