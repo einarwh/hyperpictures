@@ -28,7 +28,7 @@ let postHandler (ctx : HttpContext) : Task =
     match ctx.Request.HasFormContentType with
     | false -> 
         ctx.Response.StatusCode <- 400
-        ctx.Response.WriteAsync("Bad request - where is the form?")
+        ctx.Response.WriteAsync("Missing form!")
     | true ->
         match ctx.Request.Form.TryGetValue("number") with 
         | (true, formStringValues) ->
@@ -42,7 +42,7 @@ let postHandler (ctx : HttpContext) : Task =
             Task.CompletedTask;
         | _ ->
             ctx.Response.StatusCode <- 400
-            ctx.Response.WriteAsync("Bad request - where is the number?")
+            ctx.Response.WriteAsync("Missing number!")
 
 [<EntryPoint>]
 let main args =
