@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "sPzLPkkLopxRqK9Fd+onFWmAjd9y1FZ1+wBSQbM3fu8AaGXhG8HZOqIxtoDxRP7QfdEzep+nfovazRTGh3w7Gw==",
+  "success": true,
+  "projectFilePath": "/Users/einarwh/hub/hyperpictures/Hyperpictures/Hyperpictures.fsproj",
+  "expectedPackageFiles": [
+    "/Users/einarwh/.nuget/packages/fsharp.core/7.0.403/fsharp.core.7.0.403.nupkg.sha512"
+  ],
+  "logs": []
+}
