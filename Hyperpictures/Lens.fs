@@ -8,6 +8,8 @@ type Lens = Box * Hue
 
 let turnLens (box, hue : Hue) = (turnBox box, hue)
 
+let turnCcwLens (box, hue : Hue) = (turnCcwBox box, hue)
+
 let flipLens (box, hue : Hue) = (flipBox box, hue)
  
 let tossLens (box, hue : Hue) = (tossBox box, hue)

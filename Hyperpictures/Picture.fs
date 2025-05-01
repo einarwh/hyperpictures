@@ -10,6 +10,8 @@ let blank : Picture = fun _ -> []
 
 let turn (p : Picture) = turnLens >> p 
 
+let turnCcw (p : Picture) = turnCcwLens >> p 
+
 let flip (p : Picture) = flipLens >> p 
 
 let toss (p : Picture) = tossLens >> p 
@@ -22,19 +24,29 @@ let aboveRatio (m : int) (n : int) (p1 : Picture) (p2 : Picture) =
 
 let above = aboveRatio 1 1
 
-let besideRatio (m : int) (n : int) (p1 : Picture) (p2 : Picture) =
+let belowRatio (m : int) (n : int) (p1 : Picture) (p2 : Picture) = 
+  aboveRatio n m p2 p1
+
+let below = belowRatio 1 1
+
+let leftOfRatio (m : int) (n : int) (p1 : Picture) (p2 : Picture) =
   fun lens ->
     let factor = float m / float (m + n) 
     let b1, b2 = splitLensHorizontally factor lens
     p1 b1 @ p2 b2
 
-let beside = besideRatio 1 1
+let leftOf = leftOfRatio 1 1
+
+let rightOfRatio (m : int) (n : int) (p1 : Picture) (p2 : Picture) =
+  leftOfRatio n m p2 p1
+
+let rightOf = rightOfRatio 1 1 
 
 let rec row = function
   | [] -> blank
   | [p] -> p
-  | [p1; p2] -> beside p1 p2
-  | p :: rest -> besideRatio 1 (List.length rest) p (row rest) 
+  | [p1; p2] -> rightOf p1 p2
+  | p :: rest -> rightOfRatio 1 (List.length rest) p (row rest) 
 
 let rec column = function
   | [] -> blank
@@ -43,13 +55,13 @@ let rec column = function
   | p :: rest -> aboveRatio 1 (List.length rest) p (row rest) 
    
 let quartet nw ne sw se = 
-  above (beside nw ne) (beside sw se)
+  above (rightOf nw ne) (rightOf sw se)
 
 let selfQuartet p = 
   quartet p p p p
 
 let nonet nw nm ne mw mm me sw sm se =
-  let row w m e = besideRatio 1 2 w (beside m e)
+  let row w m e = rightOfRatio 1 2 w (rightOf m e)
   aboveRatio 1 2
     (row nw nm ne)
     (above 
